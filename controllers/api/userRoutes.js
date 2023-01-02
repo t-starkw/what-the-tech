@@ -2,7 +2,25 @@ const router = require('express').Router();
 const { User, Post } = require('../../models');
 
 // User Login
-
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    const user = await User.findOne({
+        where: { email: email }
+    })
+    if (!user) {
+        res.status(404).json({ message: "User not found"})
+    } else {
+        if (user.checkPassword(password)) {
+            // CORRECT password
+            req.session.user_id = user.id
+            req.session.logged_in = true
+            res.json({message: "User logged in"})
+        } else {
+            // INCORRECT password
+            res.json({message:"Password is incorrect"})
+        }
+    }
+})
 
 // Create a new user
 router.post('/', async (req, res) => {
@@ -93,6 +111,10 @@ router.delete('/:id', async (req, res) => {
 })
 
 // User Logout
+router.post('/logout', async (req, res) => {
+    req.session.destroy()
+    res.json({message:"Logged out"})
+})
 
 
 
