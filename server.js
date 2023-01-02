@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     res.send('The server is live!');
 });
 
-sequelize.sync({ force:true }).then(() => {
+sequelize.sync({ force:false }).then(() => {
     app.listen(PORT)
     console.log(`Server listening on port ${PORT}!`)
 });
