@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
         res.json(result);
     }
     catch(err) {
-        res,json(err)
+        res.json(err)
     }
 });
 
