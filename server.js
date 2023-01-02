@@ -1,18 +1,15 @@
 const express = require('express');
 const sequelize = require('./config/connection');
 // const mysql = require('mysql2');
-// const { User, Post, Comment } = require('./models')
+const { User, Post, Comment } = require('./models')
+const routes = require('./controllers');
 const PORT = process.env.PORT || 3000;
 
 
 const app = express();
 
 app.use(express.json());
-
-// app.post('/api/users', async  (req, res) => {
-//     const result = await User.create(req.body);
-//     res.json(result);
-// })
+app.use(routes);
 
 app.get('/', (req, res) => {
     res.send('The server is live!');
