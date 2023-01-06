@@ -1,9 +1,16 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
+const { withAuth } = require('../utils/auth');
 
-// Get all posts
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    res.render('dashboard');
+});
+
+
+
+// get all posts
+router.get('/', withAuth, (req, res) => {
     Post.findAll({
       attributes: [
         'id',
@@ -26,34 +33,26 @@ router.get('/', (req, res) => {
         }
       ]
     })
-      .then(dbPostData => {
-        const posts = dbPostData.map(post => post.get({ plain: true}));
-
-        res.render('home', {
-            posts,
-            loggedIn: req.session.loggedIn,
-            username: req.session.username
-        })
-    })
+      .then(dbPostData => res.json(dbPostData))
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
       });
   });
 
-// login
-router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
+// Create a post
+router.post('/', withAuth, async (req, res) => {
+    try {
+        const newPost = await Post.create({
+            title: req.body.title,
+            content: req.body.content,
+            user_id: req.session.user_id
+        })
+        .then(dbPostData => res.json(dbPostData))
     }
-
-    res.render('login');
-});
-
-// signup
-router.get('/signup', (req, res) => {
-  res.render('signup');
-});
+    catch(err) {
+        res.json(err);
+    }
+})
 
 module.exports = router;
