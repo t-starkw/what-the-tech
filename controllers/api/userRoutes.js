@@ -3,9 +3,9 @@ const { User, Post } = require('../../models');
 
 // User Login
 router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
     const user = await User.findOne({
-        where: { email: email }
+        where: { name: username }
     })
     if (!user) {
         res.status(404).json({ message: "User not found"})
@@ -14,7 +14,7 @@ router.post('/login', async (req, res) => {
             // CORRECT password
             req.session.user_id = user.id
             req.session.logged_in = true
-            res.json({message: "User logged in"})
+            console.log(`Welcome, ${username}`);
         } else {
             // INCORRECT password
             res.json({message:"Password is incorrect"})
@@ -23,15 +23,25 @@ router.post('/login', async (req, res) => {
 })
 
 // Create a new user
-router.post('/', async (req, res) => {
-    try{
-        const result = await User.create(req.body);
-        res.json(result);
-    }
-    catch(err) {
-        res.json(err)
-    }
-});
+router.post('/', (req, res) => {
+    User.create({
+      name: req.body.username,
+      password: req.body.password
+    })
+      .then(dbUserData => {
+        req.session.save(() => {
+          req.session.user_id = dbUserData.id;
+          req.session.name = dbUserData.username;
+          req.session.loggedIn = true;
+    
+          res.json(dbUserData);
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
 
 // Get user by ID
 router.get('/:id', async (req, res) => {

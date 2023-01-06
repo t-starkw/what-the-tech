@@ -1,12 +1,12 @@
 console.log("linked");
-async function loginHandler(event) {
+async function signupHandler(event) {
     event.preventDefault();
 
-    const username = document.querySelector('#user-login').value.trim();
-    const password = document.querySelector('#pwd-login').value.trim();
+    const username = document.querySelector('#user-signup').value.trim();
+    const password = document.querySelector('#pwd-signup').value.trim();
 
     if (username && password) {
-        const response = await fetch('/api/users/login', {
+        const response = await fetch('/api/users/', {
             method: 'post',
             body: JSON.stringify({
                 username,
@@ -18,10 +18,9 @@ async function loginHandler(event) {
         });
         if (response.ok) {
             document.location.replace('/dashboard');
-            console.log("logged in");
         } else {
             alert(response.statusText);
         }
     }
 }
-document.querySelector('.login-form').addEventListener('submit', loginHandler);
+document.querySelector('.signup-form').addEventListener('submit', signupHandler);

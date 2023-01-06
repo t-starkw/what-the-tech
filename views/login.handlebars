@@ -1,12 +1,21 @@
-<form class="login-form">
-    <div class="form-group">
-        <label for="userName">User Name:</label>
-        <input type="text" class="form-control login-user" id="userName">
+<div class="container login-container">
+    <div class="row">
+        <h3>Login</h3>
+        <form class="login-form">
+            <div class="form-group">
+                <label for="user-login"></label>
+                <input type="text" class="form-control" id="user-login" placeholder="Your Username *" />
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="pwd-login" placeholder="Your Password *"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btnSubmit" value="Login" />
+            </div>
+            <div class="form-group">
+                <a href="/signup" id="submit" class="btn">Don't have an account? Sign up instead!</a>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="pwd">Password:</label>
-        <input type="password" class="form-control login-pwd" id="pwd">
-    </div>
-    <button type="submit" class="btn btn-default login-btn">Submit</button>
-</form>
-{{!-- <script src="../public/js/login.js"></script> --}}
+</div>
+<script src="/js/login.js"></script>
