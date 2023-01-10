@@ -3,11 +3,14 @@ const sequelize = require('../config/connection');
 const { Post, User, Comment } = require('../models');
 const { withAuth } = require('../utils/auth');
 
+
 router.get('/dashboard', async (req, res) => {
-    res.render('dashboard');
-});
-
-
+    try {
+      res.render("dashboard");
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
 // // get all posts
 // router.get('/', withAuth, (req, res) => {
@@ -40,7 +43,7 @@ router.get('/dashboard', async (req, res) => {
 //       });
 //   });
 
-// // Create a post
+// Create a post
 // router.post('/', withAuth, async (req, res) => {
 //     try {
 //         const newPost = await Post.create({

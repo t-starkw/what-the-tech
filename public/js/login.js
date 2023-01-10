@@ -16,6 +16,7 @@ async function loginHandler(event) {
                 'Content-Type': 'application/json'
             }
         });
+        console.log(response);
         if (response.ok) {
             document.location.replace('/dashboard');
             console.log("logged in");

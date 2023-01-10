@@ -11,6 +11,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Render dashboard
+router.get('/dashboard', async (req, res) => {
+  try {
+    res.render("dashboard");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 // login
 router.get('/login', (req, res) => {
