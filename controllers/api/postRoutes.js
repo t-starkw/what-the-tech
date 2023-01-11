@@ -1,7 +1,38 @@
 const router = require('express').Router();
-const { Post, User } = require('../../models');
+const { Post, User, Comment } = require('../../models');
 const { withAuth } = require('../../utils/auth');
 
+// Get all posts
+router.get('/', (req, res) => {
+    Post.findAll({
+        attributes: [
+            'id',
+            'content',
+            'title',
+            'created_at',
+          ],
+        order: [[ 'created_at', 'DESC']],
+        include: [
+            {
+                model: User,
+                attributes: ['username']
+            },
+            {
+                model: Comment,
+                attributes: ['id', 'content', 'post_id', 'user_id', 'created_at'],
+                include: {
+                    model: User,
+                    attributes: ['username']
+                }
+            }
+        ]
+    })
+    .then(dbPostData => res.json(dbPostData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+});
 // Create a post
 router.post('/', withAuth, async (req, res) => {
     try {
@@ -34,19 +65,6 @@ router.get('/:id', async (req, res) => {
     }
 })
 
-// Get all posts
-router.get('/', async (req, res) => {
-    try {
-        const result = await Post.findAll();
-        const posts = result.map((post) => {
-            return post.get({ plain: true })
-        })
-        res.status(200).json(posts);
-    }
-    catch (err) {
-        res.status(500).json(err);
-    }
-});
 
 // Update post
 router.put('/:id', async (req, res) => {

@@ -17,7 +17,7 @@ async function loginHandler(event) {
     });
 
     if (response.ok) {
-        document.location.replace('/')
+        document.location.replace('/dashboard')
         console.log("posted");
     } else {
         alert(response.statusText);

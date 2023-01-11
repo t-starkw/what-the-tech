@@ -1,5 +1,8 @@
 const router = require('express').Router();
-const { User, Post } = require('../../models');
+const { User, Post, Comment } = require('../../models');
+const session = require('express-session');
+const withAuth = require('../../utils/auth');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 // User Login
 router.post("/login", async (req, res) => {
@@ -23,7 +26,7 @@ router.post("/login", async (req, res) => {
         req.session.save(() => {
             req.session.user_id = userData.id;
             req.session.logged_in = true;
-            console.log(userData, `logged in: ${req.session.logged_in}`)
+            console.log(userData, `logged in: ${req.session.logged_in}`, `user_id: ${req.session.user_id}`)
 
             res.json({ user: userData, message: "You are now logged in!" });
         });
@@ -129,7 +132,6 @@ router.delete('/:id', async (req, res) => {
 
 // User Logout
 router.post('/logout', async (req, res) => {
-    req.session.logged_in = false;
     console.log(`${req.session.logged_in}`)
     req.session.destroy()
     console.log("goodbye")
