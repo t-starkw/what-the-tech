@@ -1,0 +1,18 @@
+
+<div class="detailBox">
+    <div class="titleBox">
+      <label>Comments</label>
+    </div>
+    <div class="actionBox">
+        <ul class="commentList">
+          {{#each this}}
+            <li>
+                <div class="commentText">
+                    <p class="">{{content}}</p> <span class="date sub-text">@{{user.username}} on {{created_at}}</span>
+
+                </div>
+            </li>
+          {{/each}}
+        </ul>
+    </div>
+</div>

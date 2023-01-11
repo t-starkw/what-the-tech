@@ -1,9 +1,9 @@
 <div class="container post">
 	<div class="panel panel-info">
 		<div class="panel-heading">
-			<h3><span>{{title}}</h3>
-			<span>{{id}}</span><span style="float:right">Posted by {{user.username}} on
-				{{created_at}}</span>
+			<h3><span><a href="/post/{{id}}">{{title}}</a></span></h3>
+			<span>Posted by @{{user.username}}</span>
+			<span style="float:right">{{created_at}}</span>
 		</div>
 		<div class="panel-body">
 			<p>{{content}}</p>
