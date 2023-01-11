@@ -17,6 +17,7 @@ async function signupHandler(event) {
             }
         });
         if (response.ok) {
+            alert('Account successfully created. You are now logged in.')
             document.location.replace('/dashboard');
         } else {
             alert(response.statusText);
