@@ -23,19 +23,28 @@
         </div>
         <ul class="nav navbar-nav">
           <li><a href="/">Home</a></li>
+          {{#if logged_in}}
           <li><a href="/dashboard">Dashboard</a></li>
-
+          {{else}}
+          <li><a href="/login">Dashboard</a></li>
+          {{/if}}
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/login"><span class="glyphicon glyphicon-user"></span> Sign In</a></li>
-          <li id="logout"><a href=""><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+          <li class="logout">
+            <button type="submit" class="logout-btn"
+              style="background: none;color: inherit;border: none;padding-top: 15px;padding-bottom: 15px;font: inherit;cursor: pointer;outline: inherit;display: block;line-height: 20px; color: #777">
+              <span class="glyphicon glyphicon-log-in"></span>
+              Log out
+            </button>
+          </li>
         </ul>
       </div>
     </nav>
   </header>
   {{{body}}}
 
-  {{#if loggedIn}}
+  {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
 </body>
