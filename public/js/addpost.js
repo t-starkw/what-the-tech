@@ -1,5 +1,5 @@
 console.log("linked");
-async function loginHandler(event) {
+async function postHandler(event) {
     event.preventDefault();
 
     const title = document.querySelector('input[name="title"]').value;
@@ -24,4 +24,4 @@ async function loginHandler(event) {
     }
 }
 
-document.querySelector('.post-form').addEventListener('submit', loginHandler);
+document.querySelector('.post-form').addEventListener('submit', postHandler);

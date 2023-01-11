@@ -8,7 +8,7 @@ async function commentSubmissionHandler(event) {
     var pathArray = window.location.pathname.split( '/' );
     console.log(pathArray);
     const post_id = pathArray[2];
-    console.log(post_id);
+    console.log(post_id + "from comment.js");
 
     const response = await fetch('/api/comments', {
         method: 'POST',

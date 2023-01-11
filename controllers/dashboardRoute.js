@@ -37,7 +37,7 @@ router.get('/', withAuth, (req, res) => {
       const posts = dbPostData.map(post => post.get({ plain: true }));
       console.log(posts);
       console.log('from dashboard route')
-      res.render('dashboard', { posts, loggedIn: true });
+      res.render('dashboard', { posts, logged_in: true });
     })
     .catch(err => {
       console.log(err);
