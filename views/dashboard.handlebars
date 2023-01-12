@@ -1,35 +1,25 @@
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
-		<div class="col-sm-6">
-			<h1>Share A Post</h1>
-			<form class="post-form" method="POST">
-				<div class="form-group">
-					<label for="title">Title <span class="require">*</span></label>
-					<input type="text" class="form-control" name="title" id="title" />
-				</div>
-				<div class="form-group">
-					<label for="description">Description<span class="require">*</span></label>
-					<textarea rows="5" class="form-control" name="description" id="content"></textarea>
-				</div>
-				<div class="form-group">
-					<p><span class="require">*</span> - required fields</p>
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary" id="post-submit">
-						Post
-					</button>
-				</div>
-			</form>
+
+		{{!-- user info --}}
+		<div class="col-md-4">
+			<h2>Profile</h2>
+			<div class="panel panel-default post">
+				<button type="button" class="close" id="edit-post" aria-hidden="true"><a href="dashboard/avatar"><i
+							class="glyphicon glyphicon-pencil"></i></a></button>
+				{{> user-data }}
+			</div>
 		</div>
-		<div class="col-sm-6">
+		{{!-- posts --}}
+		<div class="col-md-4">
 			{{#if posts.length}}
-			<h2>Your Posts</h2>
 			<ul class="post-list">
+				<h2>Your Posts</h2>
 				{{#each posts as |post|}}
 				<li>
 					<div class="panel panel-info post">
-						<button type="button" class="close" id="edit-post" aria-hidden="true"><a href="dashboard/edit/{{id}}"><i
-								class="glyphicon glyphicon-pencil"></i></a></button>
+						<button type="button" class="close" id="edit-post" aria-hidden="true"><a
+								href="dashboard/edit/{{id}}"><i class="glyphicon glyphicon-pencil"></i></a></button>
 						{{> post-info post }}
 					</div>
 				</li>
@@ -38,12 +28,30 @@
 			{{/if}}
 		</div>
 
+		{{!-- new post form --}}
+		<div class="col-md-4">
+			<h2>Share A Post</h1>
+				<form class="post-form" method="POST">
+					<div class="form-group">
+						<label for="title">Title <span class="require">*</span></label>
+						<input type="text" class="form-control" name="title" id="title" />
+					</div>
+					<div class="form-group">
+						<label for="description">Description<span class="require">*</span></label>
+						<textarea rows="5" class="form-control" name="description" id="content"></textarea>
+					</div>
+					<div class="form-group">
+						<p><span class="require">*</span> - required fields</p>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary" id="post-submit">
+							Post
+						</button>
+					</div>
+				</form>
+		</div>
+
 	</div>
 </div>
 
-
-
-
-
 <script src="/js/addpost.js"></script>
-
