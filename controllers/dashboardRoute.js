@@ -8,7 +8,6 @@ router.get('/', withAuth, (req, res) => {
 
   Post.findAll({
     where: {
-
       user_id: req.session.user_id
     },
     attributes: [
@@ -23,12 +22,12 @@ router.get('/', withAuth, (req, res) => {
         attributes: ['id', 'content', 'post_id', 'user_id', 'created_at'],
         include: {
           model: User,
-          attributes: ['username']
+          attributes: ['username', 'avatar']
         }
       },
       {
         model: User,
-        attributes: ['username']
+        attributes: ['username', 'avatar']
       }
     ]
   })
@@ -87,6 +86,28 @@ router.get('/edit/:id', withAuth, (req, res) => {
       res.status(500).json(err);
     });
 })
+
+// edit user avatar
+router.get('/avatar', withAuth, (req, res) => {
+  User.findOne({
+    attributes: { exclude: ['password'] },
+    where: {
+      id: req.session.user_id
+    }
+  })
+    .then(dbUserData => {
+      if (!dbUserData) {
+        res.status(404).json({ message: 'No user found with this id' });
+        return;
+      }
+      const user = dbUserData.get({ plain: true });
+      res.render('edit-avatar', {user, logged_in: true});
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    })
+  });
 
 
 module.exports = router;
