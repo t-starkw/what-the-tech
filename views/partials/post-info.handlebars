@@ -1,13 +1,8 @@
-<div class="container post">
-	<div class="panel panel-info">
-		<div class="panel-heading">
-			<h3><span><a href="/post/{{id}}">{{title}}</a></span></h3>
-			<span>Posted by @{{user.username}}</span>
-			<span style="float:right">{{created_at}}</span>
-		</div>
-		<div class="panel-body">
-			<p>{{content}}</p>
-		</div>
-
-	</div>
+<div class="panel-heading">
+	<h3><span><a href="/post/{{id}}">{{title}}</a></span></h3>
+	<span>Posted by @{{user.username}}</span>
+	<span style="float:right">{{format_date created_at}}</span>
+</div>
+<div class="panel-body">
+	<p>{{content}}</p>
 </div>
