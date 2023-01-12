@@ -67,7 +67,7 @@ router.get('/:id', async (req, res) => {
 
 
 // Update post
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
     try {
         const result = await Post.update(req.body, {
             where: {
@@ -86,7 +86,7 @@ router.put('/:id', async (req, res) => {
 })
 
 // Delete post
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
     try {
         const result = await Post.destroy({
             where: {

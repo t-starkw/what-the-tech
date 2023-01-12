@@ -4,7 +4,8 @@ const sequelize = require('./config/connection');
 const { User, Post, Comment } = require('./models');
 const routes = require('./controllers');
 const exphbs = require('express-handlebars');
-const hbs = exphbs.create({});
+const helpers = require('./utils/helpers');
+const hbs = exphbs.create({ helpers });
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;

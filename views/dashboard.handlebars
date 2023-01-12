@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
+		<div class="col-sm-6">
 			<h1>Share A Post</h1>
 			<form class="post-form" method="POST">
 				<div class="form-group">
@@ -21,20 +21,29 @@
 				</div>
 			</form>
 		</div>
+		<div class="col-sm-6">
+			{{#if posts.length}}
+			<h2>Your Posts</h2>
+			<ul class="post-list">
+				{{#each posts as |post|}}
+				<li>
+					<div class="panel panel-info post">
+						<button type="button" class="close" id="edit-post" aria-hidden="true"><a href="dashboard/edit/{{id}}"><i
+								class="glyphicon glyphicon-pencil"></i></a></button>
+						{{> post-info post }}
+					</div>
+				</li>
+				{{/each}}
+			</ul>
+			{{/if}}
+		</div>
+
 	</div>
 </div>
 
 
-{{#if posts.length}}
-<h2>Your Posts</h2>
-<ul class="post-list">
-	{{#each posts as |post|}}
-	<li>
-		{{> post-info post }}
-	</li>
-	{{/each}}
-</ul>
-{{/if}}
+
 
 
 <script src="/js/addpost.js"></script>
+
