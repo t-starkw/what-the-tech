@@ -1,6 +1,4 @@
-# what-the-tech
-
-# MVC Tech Blog
+# Tech Talk
 
 ## Project Description
 This application uses the Model-View-Controller (MVC) paradigm to create a blog-style website where developers can create and personalize an account, edit their information, make posts, edit posts, and comment on other user's posts.
