@@ -12,7 +12,7 @@ async function deletePostHandler(event) {
         method: 'DELETE',
     })
     if (response.ok) {
-        document.location.replace('/dashboard')
+        document.location.replace('/settings/dashboard')
         console.log("updated");
     } else {
         alert(response.statusText);

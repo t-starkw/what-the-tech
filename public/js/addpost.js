@@ -17,7 +17,7 @@ async function postHandler(event) {
     });
 
     if (response.ok) {
-        document.location.replace('/dashboard')
+        document.location.replace('/settings/dashboard')
         console.log("posted");
     } else {
         alert(response.statusText);

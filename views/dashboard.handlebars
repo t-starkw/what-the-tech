@@ -5,21 +5,21 @@
 		<div class="col-md-4">
 			<h2>Profile</h2>
 			<div class="panel panel-default post">
-				<button type="button" class="close" id="edit-post" aria-hidden="true"><a href="dashboard/avatar"><i
+				<button type="button" class="close" id="edit-post" aria-hidden="true"><a href="/settings/dashboard/edit-avatar"><i
 							class="glyphicon glyphicon-pencil"></i></a></button>
 				{{> user-data }}
 			</div>
 		</div>
 		{{!-- posts --}}
 		<div class="col-md-4">
-			{{#if posts.length}}
+			{{#if user.posts.length}}
 			<ul class="post-list">
 				<h2>Your Posts</h2>
-				{{#each posts as |post|}}
+				{{#each user.posts as |post|}}
 				<li>
 					<div class="panel panel-info post">
 						<button type="button" class="close" id="edit-post" aria-hidden="true"><a
-								href="dashboard/edit/{{id}}"><i class="glyphicon glyphicon-pencil"></i></a></button>
+								href="/settings/dashboard/edit/{{id}}"><i class="glyphicon glyphicon-pencil"></i></a></button>
 						{{> post-info post }}
 					</div>
 				</li>
