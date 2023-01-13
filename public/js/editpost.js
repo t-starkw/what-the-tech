@@ -7,10 +7,9 @@ async function postEditHandler(event) {
     const content = document.querySelector('textarea[name="description"]').value;
     console.log(content)
 
-    var pathArray = window.location.pathname.split( '/' );
-    console.log(pathArray);
-    const post_id = pathArray[3];
-    console.log(post_id + "from editpost.js");
+    const post_id = window.location.toString().split('/')[
+        window.location.toString().split('/').length - 1
+    ];
 
     const response = await fetch(`/api/posts/${post_id}`, {
         method: 'PUT',
@@ -24,7 +23,7 @@ async function postEditHandler(event) {
     });
 
     if (response.ok) {
-        document.location.replace('/dashboard')
+        document.location.replace('/settings/dashboard')
         console.log("updated");
     } else {
         alert(response.statusText);

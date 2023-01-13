@@ -1,0 +1,30 @@
+<div class="col-md-4 col-md-offset-4">
+    <h2>Account</h2>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <img class="center-block" src="{{user.avatar}}" />
+            <h3>@{{user.username}}</h3>
+            <input type="hidden" id="user-id" name="user-id" value={{user.id}} />
+        </div>
+        <div class="panel-body">
+            <h4>About Me</h4>
+            <form class="bio-form">
+                <div class="form-group">
+                    <label for="user-signup"></label>
+                    {{#if user.bio}}
+                    <textarea name="user-bio" id="user-bio" class="form-control" rows="5">{{user.bio}}</textarea>
+                    {{else}}
+                    <textarea name="user-bio" id="user-bio" class="form-control" rows="5"
+                        placeholder="Tell us about yourself *"></textarea>
+                    {{/if}}
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btnSubmit" value="Update" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/js/editBio.js"></script>
