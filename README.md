@@ -3,7 +3,7 @@
 ## Project Description
 This application uses the Model-View-Controller (MVC) paradigm to create a blog-style website where developers can create and personalize an account, edit their information, make posts, edit posts, and comment on other user's posts.
 
-[img]
+![image](./public/img/avatars/app/Dashboard.PNG) ![image](./public/img/avatars/app/home.PNG)
 
 ## Tools Used to Create This Project
 * JavaScript ES6
