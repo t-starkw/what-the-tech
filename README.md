@@ -32,7 +32,7 @@ npm install
 Run the project in your local browser:
 
 ```sh
-npm run develop
+npm start
 ```
 
 ## Usage
