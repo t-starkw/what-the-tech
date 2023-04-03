@@ -1,5 +1,5 @@
 # Tech Talk
->### Module xx UNC Coding Bootcamp Challenge - A Tech Blog <br><br>
+>### Module 14 UNC Coding Bootcamp Challenge - A Tech Blog <br><br>
 >  This application uses the Model-View-Controller (MVC) paradigm to create a blog-style website where developers can create and personalize an account, edit their information, make posts, edit posts, and comment on other user's posts. <br><br>
 
 ![JavaScript][js-url]
